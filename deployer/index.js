@@ -27,9 +27,9 @@ async function main() {
   const { rawTransaction } = await account.signTransaction({
     from: account.address,
     gas: 1500000,
-    gasPrice: '30000000000000',
+    gasPrice: 1000000,
     data: '0x' + bin,
-    chainId: web3.utils.toHex(1994),
+    chainId: 4,
   })
 
   console.log('Raw Transaction:', rawTransaction)
