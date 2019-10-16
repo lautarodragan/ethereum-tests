@@ -26,9 +26,8 @@ async function main() {
 
   console.log('Account Address', account.address)
 
-
-
-  console.log('contract.methods', await contract.methods.helloWorld().call())
+  console.log('helloWorld():', await contract.methods.helloWorld().call())
+  console.log('totalSupply():', await contract.methods.totalSupply().call())
 
 
 }
