@@ -7,6 +7,7 @@ const commander = require('commander')
 commander
   .option('-b, --bin <path>', 'Path to contract binary')
   .option('-h, --host <path>', 'URL of the RPC', 'http://localhost:8545')
+  .option('-c, --chainId <path>', 'Chain ID', 4)
 
 async function main() {
   console.log('Running Contract Deployer')
@@ -17,7 +18,8 @@ async function main() {
   console.log(`Contract Binary Path: ${binPath}`)
   console.log(`Web3 Version: ${web3.version}`)
   console.log(`Block number: ${currentBlockNumber}`)
-  console.log(`Chain ID: ${await web3.eth.net.getId()}`)
+  console.log(`Network ID: ${await web3.eth.net.getId()}`)
+  console.log(`Chain ID: ${commander.chainId}`)
 
   const bin = readFileSync(binPath, 'utf8')
   const account = web3.eth.accounts.privateKeyToAccount('0x2cdfcc85aef24b085229deb1a07475878e384019273328a13592aedd1595c1c6')
@@ -29,7 +31,7 @@ async function main() {
     gas: 1500000,
     gasPrice: 1000000,
     data: '0x' + bin,
-    chainId: 4,
+    chainId: commander.chainId,
   })
 
   console.log('Raw Transaction:', rawTransaction)
