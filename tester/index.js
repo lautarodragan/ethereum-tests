@@ -27,6 +27,9 @@ async function main() {
 
   console.log('helloWorld():', await contract.methods.helloWorld().call())
   console.log('totalSupply():', await contract.methods.totalSupply().call())
+  console.log('addSupply():', await contract.methods.addSupply().call())
+  console.log('addSupply():', await contract.methods.addSupply().call())
+  console.log('addSupply():', await contract.methods.addSupply().call())
 
 
 }

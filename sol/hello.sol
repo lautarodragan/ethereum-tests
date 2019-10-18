@@ -16,4 +16,9 @@ contract HelloWorld {
   function world() public view returns (address) {
     return _owner;
   }
+
+  function addSupply() public returns (uint) {
+    totalSupply = totalSupply + 1;
+    return totalSupply;
+  }
 }
