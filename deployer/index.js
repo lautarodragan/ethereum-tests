@@ -15,15 +15,14 @@ async function main() {
   const binPath = resolve(commander.bin)
   const web3 = new Web3(commander.host)
   const currentBlockNumber = await web3.eth.getBlockNumber()
+  const bin = readFileSync(binPath, 'utf8')
+  const account = web3.eth.accounts.privateKeyToAccount('0x2cdfcc85aef24b085229deb1a07475878e384019273328a13592aedd1595c1c6')
+
   console.log(`Contract Binary Path: ${binPath}`)
   console.log(`Web3 Version: ${web3.version}`)
   console.log(`Block number: ${currentBlockNumber}`)
   console.log(`Network ID: ${await web3.eth.net.getId()}`)
   console.log(`Chain ID: ${commander.chainId}`)
-
-  const bin = readFileSync(binPath, 'utf8')
-  const account = web3.eth.accounts.privateKeyToAccount('0x2cdfcc85aef24b085229deb1a07475878e384019273328a13592aedd1595c1c6')
-
   console.log('Account Address:', account.address)
 
   const { rawTransaction } = await account.signTransaction({
@@ -34,7 +33,7 @@ async function main() {
     chainId: commander.chainId,
   })
 
-  console.log('Raw Transaction:', rawTransaction)
+  console.log('Signed Raw Transaction Created')
 
   const { contractAddress, blockNumber, blockHash, transactionHash } = await web3.eth.sendSignedTransaction(rawTransaction)
 
