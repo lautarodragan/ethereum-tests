@@ -1,0 +1,21 @@
+{
+  "alloc": {
+    "0xa3F6Cf9C1F5E9Ec6Db8E995C59E9396e965C5522": {
+      "balance": "0x200000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "coinbase": "0x0000000000000000000000000000000000000000",
+  "config": {
+    "chainId": 1984,
+    "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "eip150Block": 0,
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "homesteadBlock": 0,
+    "petersburgBlock": 0
+  },
+  "difficulty": "0x1",
+  "gasLimit": "0x47b760",
+}
