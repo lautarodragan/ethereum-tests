@@ -20,6 +20,28 @@ async function main() {
   const account = web3.eth.accounts.privateKeyToAccount(commander.privateKey)
   const contract = new web3.eth.Contract(abi, commander.address, { from: account.address })
 
+  const addSupply = async () => {
+    const method = contract.methods.addSupply()
+
+    const tx = {
+      from: account.address,
+      to: commander.address,
+      gas: await method.estimateGas(),
+      gasPrice: 1e9,
+      data: method.encodeABI(),
+      chainId: commander.chainId,
+      nonce: await web3.eth.getTransactionCount(account.address, 'pending'),
+    }
+
+    console.log('tx', tx)
+
+    const { rawTransaction } = await account.signTransaction(tx)
+
+    console.log('Signed Raw Transaction Created')
+
+    return web3.eth.sendSignedTransaction(rawTransaction)
+  }
+
   console.log('Running Contract Tester')
   console.log(`Contract ABI Path: ${abiPath}`)
   console.log(`Contract Address: ${commander.address}`)
@@ -29,28 +51,7 @@ async function main() {
 
   console.log('helloWorld():', await contract.methods.helloWorld().call())
   console.log('totalSupply():', await contract.methods.totalSupply().call())
-
-  const method = contract.methods.addSupply()
-
-  const tx = {
-    from: account.address,
-    to: commander.address,
-    gas: await method.estimateGas(),
-    gasPrice: 1e9,
-    data: method.encodeABI(),
-    chainId: commander.chainId,
-    nonce: await web3.eth.getTransactionCount(account.address, 'pending'),
-  }
-
-  console.log('tx', tx)
-
-  const { rawTransaction } = await account.signTransaction(tx)
-
-  console.log('Signed Raw Transaction Created')
-
-  const response = await web3.eth.sendSignedTransaction(rawTransaction)
-
-  console.log('response:', response)
+  console.log('addSupply:', await addSupply())
 
 }
 
