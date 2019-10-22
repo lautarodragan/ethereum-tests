@@ -33,11 +33,11 @@ async function main() {
       nonce: await web3.eth.getTransactionCount(account.address, 'pending'),
     }
 
-    console.log('tx', tx)
+    // console.log('tx', tx)
 
     const { rawTransaction } = await account.signTransaction(tx)
 
-    console.log('Signed Raw Transaction Created')
+    // console.log('Signed Raw Transaction Created')
 
     return web3.eth.sendSignedTransaction(rawTransaction)
   }
@@ -51,7 +51,9 @@ async function main() {
 
   console.log('helloWorld():', await contract.methods.helloWorld().call())
   console.log('totalSupply():', await contract.methods.totalSupply().call())
-  console.log('addSupply:', await addSupply())
+  console.log('addSupply...')
+  await addSupply()
+  console.log('totalSupply():', await contract.methods.totalSupply().call())
 
 }
 
