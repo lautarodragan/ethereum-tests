@@ -8,6 +8,7 @@ commander
   .option('-b, --bin <path>', 'Path to contract binary')
   .option('-h, --host <path>', 'URL of the RPC', 'http://localhost:8545')
   .option('-c, --chainId <path>', 'Chain ID', 4)
+  .option('-p, --privateKey <path>', 'Private key of the account signing the transactions', 4)
 
 async function main() {
   console.log('Running Contract Deployer')
@@ -16,7 +17,7 @@ async function main() {
   const web3 = new Web3(commander.host)
   const currentBlockNumber = await web3.eth.getBlockNumber()
   const bin = readFileSync(binPath, 'utf8')
-  const account = web3.eth.accounts.privateKeyToAccount('0x2cdfcc85aef24b085229deb1a07475878e384019273328a13592aedd1595c1c6')
+  const account = web3.eth.accounts.privateKeyToAccount(commander.privateKey)
 
   console.log(`Contract Binary Path: ${binPath}`)
   console.log(`Web3 Version: ${web3.version}`)
