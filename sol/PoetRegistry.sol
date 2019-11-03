@@ -1,12 +1,12 @@
 pragma solidity ^0.5.0;
 
 contract PoetRegistry {
-  address public _owner;
-  CID[] public cids;
-
   struct CID {
     string cid;
   }
+
+  address public _owner;
+  CID[] public cids;
 
   constructor() public {
     _owner = msg.sender;
