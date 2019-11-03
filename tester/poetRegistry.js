@@ -43,7 +43,7 @@ async function main() {
     return web3.eth.sendSignedTransaction(rawTransaction)
   }
 
-  const getCidCount = () => contract.methods.getCidCount().call()
+  const getCidCount = () => contract.methods.getCidCount().call().then(parseInt)
 
   const testAddingCid = async () => {
     const cidCountBefore = await getCidCount()
