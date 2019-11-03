@@ -48,8 +48,8 @@ async function main() {
   const testAddingCid = async () => {
     const cidCountBefore = await getCidCount()
     console.log(`cidCountBefore`, cidCountBefore)
-    const cidToAdd = web3.utils.asciiToHex(randomBytes(32))
-    console.log(`addCid(${cidToAdd})...`)
+    const cidToAdd = '0x' + randomBytes(32).toString('hex')
+    console.log('addCid', cidToAdd)
     await addCid(cidToAdd)
     const cidCountAfter = await getCidCount()
     console.log('cidCountAfter:', cidCountAfter)
